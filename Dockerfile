@@ -12,7 +12,8 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install -j$(nproc) gd intl mbstring mysqli soap xml xsl zip pdo  fileinfo pdo_mysql \
     && a2enmod rewrite headers \
-    && service apache2 restart
+    && service apache2 restart \
+    curl -Lo ./opencart.zip $(sh -c 'curl -s https://api.github.com/repos/opencart/opencart/releases/latest | grep "browser_download_url" | cut -d : -f 2,3 | tr -d \"');
 
 COPY ./opencart.zip /var/www/html/
 RUN apt-get install -y unzip \
