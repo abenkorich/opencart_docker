@@ -16,8 +16,8 @@ RUN apt-get update && apt-get install -y \
     && curl -Lo /var/www/html/opencart.zip $(sh -c 'curl -s https://api.github.com/repos/opencart/opencart/releases/latest | grep "browser_download_url" | cut -d : -f 2,3 | tr -d \"');
 
 RUN apt-get install -y unzip \
-    && unzip /var/www/html/opencart.zip '*/upload/*' -d /var/www/html/ \
-    && mv /var/www/html/opencart-*/upload/* /var/www/html/ \
+    && unzip /var/www/html/opencart.zip -d /var/www/html/opencart \
+    && mv /var/www/html/opencart/upload/* /var/www/html/ \
     && rm -rf /var/www/html/opencart* \
     && cp /var/www/html/config-dist.php /var/www/html/config.php \
     && cp /var/www/html/admin/config-dist.php /var/www/html/admin/config.php \
