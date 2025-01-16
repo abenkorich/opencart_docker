@@ -3,7 +3,7 @@ services:
   web:
     build: .
     ports:
-      - "80:80"
+      - "90:80"
     depends_on:
       - db
     # volumes:
@@ -20,14 +20,14 @@ services:
       MYSQL_USER: user
       MYSQL_PASSWORD: password
     ports:
-      - "3306:3306"
+      - "3307:3306"
     
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     restart: always
     ports:
-      - '8080:80'
+      - '8090:80'
     environment:
       PMA_HOST: db
       PMA_PORT: 3306
